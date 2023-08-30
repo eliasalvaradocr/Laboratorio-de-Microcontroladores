@@ -245,7 +245,7 @@ _00145_DS_:
 _00166_DS_:
 	BTFSC	STATUS,0
 	GOTO	_00147_DS_
-;;genSkipc:3307: created from rifx:0x7fffda0b6120
+;;genSkipc:3307: created from rifx:0x7ffd86074560
 ;	.line	93; "dado.c"	for (j = 0; j < 1275; j++);
 	MOVLW	0xfb
 	BANKSEL	r0x1006
