@@ -17,7 +17,10 @@
 typedef unsigned int word;
 
 // Lo siguiente corresponde a la configuracion del PIC
-word __at 0x2007 __CONFIG = (_BODEN_OFF & _WDTE_OFF & _WDT_OFF & _MCLRE_OFF);
+
+// Por lo que, en la siguiente configuracion se desactiva MCLR es decir el pin de reset
+// para asi poder usarlo como la entrada donde se encuentra el boton sin que genere problemas
+word __at 0x2007 __CONFIG = (_BODEN_OFF & _CP_OFF & _MCLRE_OFF & _PWRTE_ON & _WDT_OFF & _INTRC_OSC_NOCLKOUT);
 
 void delay(unsigned int tiempo);
 

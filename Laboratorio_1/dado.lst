@@ -1,6 +1,6 @@
 gplink-1.4.0 #1107 (Jan  1 2021)
 Copyright (c) 1998-2014 gputils project
-Listing File Generated: 8-27-2023  17:56:32
+Listing File Generated: 8-30-2023  10:46:45
  
  
 Address  Value    Disassembly              Source
@@ -28,7 +28,7 @@ Address  Value    Disassembly              Source
                                            ;--------------------------------------------------------
                                            ; config word(s)
                                            ;--------------------------------------------------------
-002007   3f97     addlw   0x97             	__config 0x3f97
+002007   3f84     addlw   0x84             	__config 0x3f84
                                            ;--------------------------------------------------------
                                            ; external declarations
                                            ;--------------------------------------------------------
@@ -145,30 +145,30 @@ Address  Value    Disassembly              Source
                                            S_dado__main	code
                                            _main:
                                            ; 2 exit points
-                                           ;	.line	37; "dado.c"	TRISIO = 0b00001000; 
+                                           ;	.line	40; "dado.c"	TRISIO = 0b00001000; 
 00009e   3008     movlw   0x08             	MOVLW	0x08
 00009f   1683     bsf     0x03, 0x5        	BANKSEL	_TRISIO
 0000a0   0085     movwf   0x05             	MOVWF	_TRISIO
-                                           ;	.line	39; "dado.c"	GPIO = 0x00; 
+                                           ;	.line	42; "dado.c"	GPIO = 0x00; 
 0000a1   1283     bcf     0x03, 0x5        	BANKSEL	_GPIO
 0000a2   0185     clrf    0x05             	CLRF	_GPIO
-                                           ;	.line	43; "dado.c"	OPTION_REG = 0b00000100; 
+                                           ;	.line	46; "dado.c"	OPTION_REG = 0b00000100; 
 0000a3   3004     movlw   0x04             	MOVLW	0x04
 0000a4   1683     bsf     0x03, 0x5        	BANKSEL	_OPTION_REG
 0000a5   0081     movwf   0x01             	MOVWF	_OPTION_REG
                                            _00113_DS_:
-                                           ;	.line	50; "dado.c"	if (boton == 0) {
+                                           ;	.line	53; "dado.c"	if (boton == 0) {
 0000a6   1283     bcf     0x03, 0x5        	BANKSEL	_GPIObits
 0000a7   1985     btfsc   0x05, 0x3        	BTFSC	_GPIObits,3
 0000a8   28c6     goto    0x00c6           	GOTO	_00110_DS_
-                                           ;	.line	52; "dado.c"	unsigned char valor_aleatorio = TMR0; 
+                                           ;	.line	55; "dado.c"	unsigned char valor_aleatorio = TMR0; 
 0000a9   0801     movf    0x01, 0x0        	MOVF	_TMR0,W
 0000aa   1683     bsf     0x03, 0x5        	BANKSEL	r0x100A
 0000ab   00ac     movwf   0x2c             	MOVWF	r0x100A
-                                           ;	.line	54; "dado.c"	if (valor_aleatorio != valor_actual) {
+                                           ;	.line	57; "dado.c"	if (valor_aleatorio != valor_actual) {
 0000ac   1683     bsf     0x03, 0x5        	BANKSEL	_valor_actual
 0000ad   0835     movf    0x35, 0x0        	MOVF	_valor_actual,W
-                                           ;	.line	58; "dado.c"	valor_anterior = valor_actual; 
+                                           ;	.line	61; "dado.c"	valor_anterior = valor_actual; 
 0000ae   1683     bsf     0x03, 0x5        	BANKSEL	r0x100A
 0000af   062c     xorwf   0x2c, 0x0        	XORWF	r0x100A,W
 0000b0   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
@@ -177,12 +177,12 @@ Address  Value    Disassembly              Source
 0000b3   0835     movf    0x35, 0x0        	MOVF	_valor_actual,W
 0000b4   1683     bsf     0x03, 0x5        	BANKSEL	_valor_anterior
 0000b5   00b6     movwf   0x36             	MOVWF	_valor_anterior
-                                           ;	.line	60; "dado.c"	valor_actual = valor_aleatorio; 
+                                           ;	.line	63; "dado.c"	valor_actual = valor_aleatorio; 
 0000b6   1683     bsf     0x03, 0x5        	BANKSEL	r0x100A
 0000b7   082c     movf    0x2c, 0x0        	MOVF	r0x100A,W
 0000b8   1683     bsf     0x03, 0x5        	BANKSEL	_valor_actual
 0000b9   00b5     movwf   0x35             	MOVWF	_valor_actual
-                                           ;	.line	62; "dado.c"	GPIO = (0b11000000 | valor_actual);
+                                           ;	.line	65; "dado.c"	GPIO = (0b11000000 | valor_actual);
 0000ba   0835     movf    0x35, 0x0        	MOVF	_valor_actual,W
 0000bb   1683     bsf     0x03, 0x5        	BANKSEL	r0x100A
 0000bc   00ac     movwf   0x2c             	MOVWF	r0x100A
@@ -191,7 +191,7 @@ Address  Value    Disassembly              Source
 0000bf   1283     bcf     0x03, 0x5        	BANKSEL	_GPIO
 0000c0   0085     movwf   0x05             	MOVWF	_GPIO
                                            _00106_DS_:
-                                           ;	.line	65; "dado.c"	delay(time);
+                                           ;	.line	68; "dado.c"	delay(time);
 0000c1   3064     movlw   0x64             	MOVLW	0x64
 0000c2   00ff     movwf   0x7f             	MOVWF	STK00
 0000c3   3000     movlw   0x00             	MOVLW	0x00
@@ -200,10 +200,10 @@ Address  Value    Disassembly              Source
                                            	PAGESEL	$
 0000c5   28a6     goto    0x00a6           	GOTO	_00113_DS_
                                            _00110_DS_:
-                                           ;	.line	69; "dado.c"	if (valor_actual != valor_anterior) {
+                                           ;	.line	72; "dado.c"	if (valor_actual != valor_anterior) {
 0000c6   1683     bsf     0x03, 0x5        	BANKSEL	_valor_anterior
 0000c7   0836     movf    0x36, 0x0        	MOVF	_valor_anterior,W
-                                           ;	.line	71; "dado.c"	GPIO = (0b11000000 | valor_actual);
+                                           ;	.line	74; "dado.c"	GPIO = (0b11000000 | valor_actual);
 0000c8   1683     bsf     0x03, 0x5        	BANKSEL	_valor_actual
 0000c9   0635     xorwf   0x35, 0x0        	XORWF	_valor_actual,W
 0000ca   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
@@ -215,13 +215,13 @@ Address  Value    Disassembly              Source
 0000d0   042c     iorwf   0x2c, 0x0        	IORWF	r0x100A,W
 0000d1   1283     bcf     0x03, 0x5        	BANKSEL	_GPIO
 0000d2   0085     movwf   0x05             	MOVWF	_GPIO
-                                           ;	.line	73; "dado.c"	valor_anterior = valor_actual; 
+                                           ;	.line	76; "dado.c"	valor_anterior = valor_actual; 
 0000d3   1683     bsf     0x03, 0x5        	BANKSEL	_valor_actual
 0000d4   0835     movf    0x35, 0x0        	MOVF	_valor_actual,W
 0000d5   1683     bsf     0x03, 0x5        	BANKSEL	_valor_anterior
 0000d6   00b6     movwf   0x36             	MOVWF	_valor_anterior
 0000d7   28a6     goto    0x00a6           	GOTO	_00113_DS_
-                                           ;	.line	77; "dado.c"	}
+                                           ;	.line	80; "dado.c"	}
 0000d8   0008     return                   	RETURN	
                                            ; exit point of _main
                                            
@@ -243,12 +243,12 @@ Address  Value    Disassembly              Source
                                            S_dado__delay	code
                                            _delay:
                                            ; 2 exit points
-                                           ;	.line	85; "dado.c"	void delay(unsigned int tiempo) {
+                                           ;	.line	88; "dado.c"	void delay(unsigned int tiempo) {
 00010d   1683     bsf     0x03, 0x5        	BANKSEL	r0x1002
 00010e   00ae     movwf   0x2e             	MOVWF	r0x1002
 00010f   087f     movf    0x7f, 0x0        	MOVF	STK00,W
 000110   00ad     movwf   0x2d             	MOVWF	r0x1003
-                                           ;	.line	89; "dado.c"	for (i = 0; i < tiempo; i++)
+                                           ;	.line	92; "dado.c"	for (i = 0; i < tiempo; i++)
 000111   01af     clrf    0x2f             	CLRF	r0x1004
 000112   01b0     clrf    0x30             	CLRF	r0x1005
                                            _00145_DS_:
@@ -262,8 +262,8 @@ Address  Value    Disassembly              Source
                                            _00166_DS_:
 00011a   1803     btfsc   0x03, 0x0        	BTFSC	STATUS,0
 00011b   2937     goto    0x0137           	GOTO	_00147_DS_
-                                           ;;genSkipc:3307: created from rifx:0x7ffc943f6e30
-                                           ;	.line	90; "dado.c"	for (j = 0; j < 1275; j++);
+                                           ;;genSkipc:3307: created from rifx:0x7fffda0b6120
+                                           ;	.line	93; "dado.c"	for (j = 0; j < 1275; j++);
 00011c   30fb     movlw   0xfb             	MOVLW	0xfb
 00011d   1683     bsf     0x03, 0x5        	BANKSEL	r0x1006
 00011e   00b1     movwf   0x31             	MOVWF	r0x1006
@@ -288,13 +288,13 @@ Address  Value    Disassembly              Source
 000130   0433     iorwf   0x33, 0x0        	IORWF	r0x1008,W
 000131   1d03     btfss   0x03, 0x2        	BTFSS	STATUS,2
 000132   2921     goto    0x0121           	GOTO	_00143_DS_
-                                           ;	.line	89; "dado.c"	for (i = 0; i < tiempo; i++)
+                                           ;	.line	92; "dado.c"	for (i = 0; i < tiempo; i++)
 000133   0aaf     incf    0x2f, 0x1        	INCF	r0x1004,F
 000134   1903     btfsc   0x03, 0x2        	BTFSC	STATUS,2
 000135   0ab0     incf    0x30, 0x1        	INCF	r0x1005,F
 000136   2913     goto    0x0113           	GOTO	_00145_DS_
                                            _00147_DS_:
-                                           ;	.line	91; "dado.c"	}
+                                           ;	.line	94; "dado.c"	}
 000137   0008     return                   	RETURN	
                                            ; exit point of _delay
                                            

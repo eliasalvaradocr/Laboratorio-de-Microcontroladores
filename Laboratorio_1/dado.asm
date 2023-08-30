@@ -11,7 +11,7 @@
 ;--------------------------------------------------------
 ; config word(s)
 ;--------------------------------------------------------
-	__config 0x3f97
+	__config 0x3f84
 ;--------------------------------------------------------
 ; external declarations
 ;--------------------------------------------------------
@@ -128,30 +128,30 @@ code_dado	code
 S_dado__main	code
 _main:
 ; 2 exit points
-;	.line	37; "dado.c"	TRISIO = 0b00001000; 
+;	.line	40; "dado.c"	TRISIO = 0b00001000; 
 	MOVLW	0x08
 	BANKSEL	_TRISIO
 	MOVWF	_TRISIO
-;	.line	39; "dado.c"	GPIO = 0x00; 
+;	.line	42; "dado.c"	GPIO = 0x00; 
 	BANKSEL	_GPIO
 	CLRF	_GPIO
-;	.line	43; "dado.c"	OPTION_REG = 0b00000100; 
+;	.line	46; "dado.c"	OPTION_REG = 0b00000100; 
 	MOVLW	0x04
 	BANKSEL	_OPTION_REG
 	MOVWF	_OPTION_REG
 _00113_DS_:
-;	.line	50; "dado.c"	if (boton == 0) {
+;	.line	53; "dado.c"	if (boton == 0) {
 	BANKSEL	_GPIObits
 	BTFSC	_GPIObits,3
 	GOTO	_00110_DS_
-;	.line	52; "dado.c"	unsigned char valor_aleatorio = TMR0; 
+;	.line	55; "dado.c"	unsigned char valor_aleatorio = TMR0; 
 	MOVF	_TMR0,W
 	BANKSEL	r0x100A
 	MOVWF	r0x100A
-;	.line	54; "dado.c"	if (valor_aleatorio != valor_actual) {
+;	.line	57; "dado.c"	if (valor_aleatorio != valor_actual) {
 	BANKSEL	_valor_actual
 	MOVF	_valor_actual,W
-;	.line	58; "dado.c"	valor_anterior = valor_actual; 
+;	.line	61; "dado.c"	valor_anterior = valor_actual; 
 	BANKSEL	r0x100A
 	XORWF	r0x100A,W
 	BTFSC	STATUS,2
@@ -160,12 +160,12 @@ _00113_DS_:
 	MOVF	_valor_actual,W
 	BANKSEL	_valor_anterior
 	MOVWF	_valor_anterior
-;	.line	60; "dado.c"	valor_actual = valor_aleatorio; 
+;	.line	63; "dado.c"	valor_actual = valor_aleatorio; 
 	BANKSEL	r0x100A
 	MOVF	r0x100A,W
 	BANKSEL	_valor_actual
 	MOVWF	_valor_actual
-;	.line	62; "dado.c"	GPIO = (0b11000000 | valor_actual);
+;	.line	65; "dado.c"	GPIO = (0b11000000 | valor_actual);
 	MOVF	_valor_actual,W
 	BANKSEL	r0x100A
 	MOVWF	r0x100A
@@ -174,7 +174,7 @@ _00113_DS_:
 	BANKSEL	_GPIO
 	MOVWF	_GPIO
 _00106_DS_:
-;	.line	65; "dado.c"	delay(time);
+;	.line	68; "dado.c"	delay(time);
 	MOVLW	0x64
 	MOVWF	STK00
 	MOVLW	0x00
@@ -183,10 +183,10 @@ _00106_DS_:
 	PAGESEL	$
 	GOTO	_00113_DS_
 _00110_DS_:
-;	.line	69; "dado.c"	if (valor_actual != valor_anterior) {
+;	.line	72; "dado.c"	if (valor_actual != valor_anterior) {
 	BANKSEL	_valor_anterior
 	MOVF	_valor_anterior,W
-;	.line	71; "dado.c"	GPIO = (0b11000000 | valor_actual);
+;	.line	74; "dado.c"	GPIO = (0b11000000 | valor_actual);
 	BANKSEL	_valor_actual
 	XORWF	_valor_actual,W
 	BTFSC	STATUS,2
@@ -198,13 +198,13 @@ _00110_DS_:
 	IORWF	r0x100A,W
 	BANKSEL	_GPIO
 	MOVWF	_GPIO
-;	.line	73; "dado.c"	valor_anterior = valor_actual; 
+;	.line	76; "dado.c"	valor_anterior = valor_actual; 
 	BANKSEL	_valor_actual
 	MOVF	_valor_actual,W
 	BANKSEL	_valor_anterior
 	MOVWF	_valor_anterior
 	GOTO	_00113_DS_
-;	.line	77; "dado.c"	}
+;	.line	80; "dado.c"	}
 	RETURN	
 ; exit point of _main
 
@@ -226,12 +226,12 @@ _00110_DS_:
 S_dado__delay	code
 _delay:
 ; 2 exit points
-;	.line	85; "dado.c"	void delay(unsigned int tiempo) {
+;	.line	88; "dado.c"	void delay(unsigned int tiempo) {
 	BANKSEL	r0x1002
 	MOVWF	r0x1002
 	MOVF	STK00,W
 	MOVWF	r0x1003
-;	.line	89; "dado.c"	for (i = 0; i < tiempo; i++)
+;	.line	92; "dado.c"	for (i = 0; i < tiempo; i++)
 	CLRF	r0x1004
 	CLRF	r0x1005
 _00145_DS_:
@@ -245,8 +245,8 @@ _00145_DS_:
 _00166_DS_:
 	BTFSC	STATUS,0
 	GOTO	_00147_DS_
-;;genSkipc:3307: created from rifx:0x7ffc943f6e30
-;	.line	90; "dado.c"	for (j = 0; j < 1275; j++);
+;;genSkipc:3307: created from rifx:0x7fffda0b6120
+;	.line	93; "dado.c"	for (j = 0; j < 1275; j++);
 	MOVLW	0xfb
 	BANKSEL	r0x1006
 	MOVWF	r0x1006
@@ -271,13 +271,13 @@ _00143_DS_:
 	IORWF	r0x1008,W
 	BTFSS	STATUS,2
 	GOTO	_00143_DS_
-;	.line	89; "dado.c"	for (i = 0; i < tiempo; i++)
+;	.line	92; "dado.c"	for (i = 0; i < tiempo; i++)
 	INCF	r0x1004,F
 	BTFSC	STATUS,2
 	INCF	r0x1005,F
 	GOTO	_00145_DS_
 _00147_DS_:
-;	.line	91; "dado.c"	}
+;	.line	94; "dado.c"	}
 	RETURN	
 ; exit point of _delay
 
